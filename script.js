@@ -1,35 +1,39 @@
-var add = document.getElementById('addforms');
-var item_list = document.getElementById('lists');
-var filter = document.getElementById('filter');
+var username = document.getElementById('name');
+var email = document.getElementById('email');
+var pwd = document.getElementById('pwd');
+var press = document.getElementById('submit');
+var list = document.getElementById('output_screen');
 
-add.addEventListener('submit', appenditem);
-item_list.addEventListener('click',removeitem);
-filter.addEventListener('keyup',filteritem);
-function removeitem(x){
-    if(x.target.id==='del'){
+press.addEventListener('click',show_details);
+list.addEventListener('click',delete_details);
+function show_details(e){
+    e.preventDefault();
+    var li = document.createElement('li');
+    li.id = 'details';
+    li.appendChild(document.createTextNode(username.value));
+    li.appendChild(document.createTextNode(email.value));
+    li.appendChild(document.createTextNode(pwd.value));
+    li.ch
+    var delq = document.createElement('button');
+    delq.id='del';
+    delq.textContent='del'
+    li.appendChild(delq);
+    list.appendChild(li);
+    result = {
+        'name':username.value,
+        'email':email.value,
+        'password':pwd.value
+    };
+    var object = JSON.stringify(result);
+    localStorage.setItem(email.value,object);
+}
+function delete_details(e){
+    if (e.target.id=='del'){
         if(confirm('Are you sure?')){
-            var li = x.target.parentElement;
-            item_list.removeChild(li);
+            var x = e.target.parentElement;
+            list.removeChild(x);
+            var item = x.childNodes[1];
+            localStorage.removeItem(item.textContent);
         }
     }
-}
-    
-function appenditem(e){
-    e.preventDefault();
-    var value = document.getElementById('tasks').value;
-    var li = document.createElement('li');
-    li.id = 'task';
-    var input = document.createElement("input");
-    input.type = 'text';
-    input.value=value;
-    li.appendChild(input);
-    var del = document.createElement('button');
-    del.id='del';
-    del.textContent='del'
-    li.appendChild(del);
-    item_list.appendChild(li);
-}
-
-function filteritem(e){
-    var text = e.target.value
 }

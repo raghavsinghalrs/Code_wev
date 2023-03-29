@@ -3,23 +3,17 @@
   <title>My application</title>
 </head>
 <body>
-  <header>
-    <div>
-      <h2>@bucketlist.com</h2>
-      <input id="filter" type="text" placeholder="Search items">
-    </div>
-  </header>
-  <h2>Tasks</h2>
-  <form for="tasks" id="addforms">
-  <input id="tasks" type="text" placeholder="Enter" name="task" required>
-  <input type="submit" value="Add">
-  </form>
-  <br>
-  <h2>Items</h2>
-  <ul id="lists">
-    <li id="task"><input type="text" value="Task"><button id="del">del</button></li>
-    <li id="task"><input type="text" value="Task"><button id="del">del</button></li>
-    <li id="task"><input type="text" value="Task"><button id="del">del</button></li>
+  <form id="user_details">
+    <label for="name">Name</label><br>
+    <input type="text" id="name" name="name" required><br>
+    <label for="mail">Email</label><br>
+    <input type="text" id="email" name="email" required><br>
+    <label for="pwd">Password</label><br>
+    <input type="text" id="pwd" name="password" required><br>
+    <input id="submit" type="submit" value="submit">
+  </form><br>
+  <ul id="output_screen">
+    <li id="details">Name, Email, Password</li>
   </ul>
   <script src="script.js"></script>
 </body>
