@@ -6,6 +6,7 @@ var list = document.getElementById('output_screen');
 
 press.addEventListener('click',show_details);
 list.addEventListener('click',delete_details);
+list.addEventListener('click',edit_details);
 function show_details(e){
     e.preventDefault();
     var li = document.createElement('li');
@@ -13,7 +14,10 @@ function show_details(e){
     li.appendChild(document.createTextNode(username.value));
     li.appendChild(document.createTextNode(email.value));
     li.appendChild(document.createTextNode(pwd.value));
-    li.ch
+    var edits = document.createElement('button');
+    edits.id='edit';
+    edits.textContent='Edit';
+    li.appendChild(edits);
     var delq = document.createElement('button');
     delq.id='del';
     delq.textContent='del'
@@ -35,5 +39,16 @@ function delete_details(e){
             var item = x.childNodes[1];
             localStorage.removeItem(item.textContent);
         }
+    }
+}
+
+function edit_details(e){
+    if (e.target.id=='edit'){
+        var x = e.target.parentElement;
+        username.value=x.childNodes[0].textContent;
+        email.value=x.childNodes[1].textContent;
+        pwd.value=x.childNodes[2].textContent;
+        list.removeChild(x);
+        localStorage.removeItem(x.childNodes[1].textContent);
     }
 }
